@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: requests-client
+  labels:
+    app: requests-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: requests-client
+  template:
+    metadata:
+      labels:
+        app: requests-client
+    spec:
+      containers:
+        - name: requests-client
+          image: requests-image:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 500m
+              memory: 5000Mi
+            requests:
+              cpu: 500m
+              memory: 5000Mi
